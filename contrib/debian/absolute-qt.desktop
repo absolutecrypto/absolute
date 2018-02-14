@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Absolute
+Comment=Absolute P2P Cryptocurrency
+Comment[fr]=Absolute, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Absolute, eşten eşe kriptografik sanal para birimi
+Exec=absolute-qt %u
+Terminal=false
+Type=Application
+Icon=absolute128
+MimeType=x-scheme-handler/absolute;
+Categories=Office;Finance;

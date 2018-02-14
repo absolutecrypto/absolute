@@ -1,0 +1,6 @@
+usr/local/bin/absolute-qt usr/bin
+share/pixmaps/absolute32.xpm usr/share/pixmaps
+share/pixmaps/absolute16.xpm usr/share/pixmaps
+share/pixmaps/absolute128.png usr/share/pixmaps
+debian/absolute-qt.desktop usr/share/applications
+debian/absolute-qt.protocol usr/share/kde4/services/
