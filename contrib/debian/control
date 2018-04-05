@@ -24,9 +24,9 @@ Build-Depends: debhelper,
  libprotobuf-dev, protobuf-compiler,
  python
 Standards-Version: 3.9.2
-Homepage: https://absolutecrypto.com
+Homepage: https://absolutecoin.net
 Vcs-Git: git://github.com/absolutecrypto/absolutecoin.git
-Vcs-Browser: https://github.com/absolutecrypto/absolutecoin
+Vcs-Browser: https://github.com/absolute-community/absolutecoin
 
 Package: absoluted
 Architecture: any

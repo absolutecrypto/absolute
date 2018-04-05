@@ -18,4 +18,4 @@ Absolute (ABS) is a digital currency inspired by solutions first used in Dash. D
 
 For building please see INSTALL / proper files in the doc subfolder.
 
-For more information please visit http://www.absolute-coin.com
+For more information please visit http://www.absolutecoin.net
