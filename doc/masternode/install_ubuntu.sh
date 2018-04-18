@@ -16,8 +16,8 @@ function printWarning
    printf "\33[0;33m$1\033[0m\n"
 
 }
-
-conf_path=$HOME/.absolutecore/absolute.conf
+root_path="$(pwd)"
+conf_path="$root_path/.absolutecore/absolute.conf"
 ext_ip=""
 mn_key=$1
 p_version=""
@@ -30,7 +30,7 @@ fi
 
 clear
 printf  "\n\n******* Starting Absolute-Community Masternode installation *******\n\n"
-
+printf " working directory is $(pwd)\n"
 {
 echo "Step 1 : Updating packages"
 	sudo apt-get update -y -qq
@@ -51,8 +51,8 @@ echo "Step 1 : Updating packages"
 
 
 	#sudo apt-get -y install python-virtualenv -y -qq
-	echo "changing working folder to $HOME"
-	cd $HOME
+	echo "changing working folder to $root_path"
+	cd $root_path
 	printSuccess "Done"
 } || {
 	printError "Fail"
@@ -91,11 +91,14 @@ echo "Step 1 : Updating packages"
 	if [ ! -f "$conf_path" ]; then
 		ext_ip=`wget -qO- eth0.me`
 		PASS=`pwgen -1 20 -n`
-		printf "--- basic configuration --- \nrpcuser=user\nrpcpassword=$PASS\nrpcport=18889\ndaemon=1\nlisten=1\nserver=1\nmaxconnections=256\nrpcallowip=127.0.0.1\nexternalip=$ext_ip:18888\n" > $conf_path
-		printf "\n--- masternode ---\nmasternode=1\nmasternodeprivkey=$mn_key" >> $conf_path
-		printf "\n--- new nodes ---\naddnode=139.99.98.145:18888\naddnode=51.255.174.238:18888\naddnode=54.37.14.240:18888\naddnode=164.132.195.79:18888\naddnode=208.167.248.187:18888\naddnode=45.77.146.105:18888\naddnode=45.77.221.206:18888\naddnode=45.76.171.105:18888" >> $conf_path
+		
+		mkdir -p "$(dirname "$conf_path")" &&
+		touch $conf_path &&
 
-		printWarning "\n **** starting daemon. wait for full sync before starting alias in your wallet"
+		printf "\n#--- basic configuration --- \nrpcuser=user\nrpcpassword=$PASS\nrpcport=18889\ndaemon=1\nlisten=1\nserver=1\nmaxconnections=256\nrpcallowip=127.0.0.1\nexternalip=$ext_ip:18888\n" > $conf_path
+		printf "\n#--- masternode ---\nmasternode=1\nmasternodeprivkey=$mn_key\n" >> $conf_path
+		printf "\n#--- new nodes ---\naddnode=139.99.98.145:18888\naddnode=51.255.174.238:18888\naddnode=54.37.14.240:18888\naddnode=164.132.195.79:18888\naddnode=208.167.248.187:18888\naddnode=45.77.146.105:18888\naddnode=45.77.221.206:18888\naddnode=45.76.171.105:18888" >> $conf_path
+		
 	else
 		printError "Configuration already exist. Remove this file '$conf_path' or configure manyally"
 	fi
@@ -130,10 +133,10 @@ echo "Step 1 : Updating packages"
 {
 	echo "Step 5 : Configuring sentinel"
 
-	if  grep -q "absolute_conf=$conf_path" "$HOME/sentinel/sentinel.conf" ; then
+	if  grep -q "absolute_conf=$conf_path" "$root_path/sentinel/sentinel.conf" ; then
 		printWarning "absolute path already set in sentinel conf"
 	else
-		printf "absolute_conf=$conf_path" >> "$HOME/sentinel/sentinel.conf"
+		printf "absolute_conf=$conf_path" >> "$root_path/sentinel/sentinel.conf"
 	fi
 
 	printSuccess "Done"
@@ -143,3 +146,5 @@ echo "Step 1 : Updating packages"
 }
 
 printSuccess "\nInstallation done you can continue to follow last steps from the guide"
+printSuccess "\nPlease note this line for your crontab"
+printSuccess "\n* * * * * cd $root_path/sentinel && ./venv/bin/python bin/sentinel.py >/dev/null 2>&1"
