@@ -3,11 +3,11 @@ Absolute Core version 0.12.2.3
 
 Release is now available from:
 
-  <hhttps://github.com/absolutecrypto/absolute/releases>
+  <hhttps://github.com/absolute-community/absolute/releases>
 
 Please report bugs using the issue tracker at github:
 
-  <https://github.com/absolutecrypto/absolute/issues>
+  <https://github.com/absolute-community/absolute/issues>
 
 
 Upgrading and downgrading
