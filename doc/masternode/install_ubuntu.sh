@@ -115,11 +115,11 @@ echo "Step 1 : Updating packages"
 {
 	echo "Step 4 : Installing Sentinel watch dog"
 	
-	if [ ! -d "$HOME/sentinel" ]; then
+	if [ ! -d "$HOME/.absolutecore/sentinel" ]; then
 		git clone https://github.com/absolute-community/sentinel.git --q
 	fi
 	
-	cd sentinel &&
+	cd /root/.absolutecore/sentinel &&
 	virtualenv ./venv &&
 	./venv/bin/pip install -r requirements.txt
 
@@ -133,10 +133,10 @@ echo "Step 1 : Updating packages"
 {
 	echo "Step 5 : Configuring sentinel"
 
-	if  grep -q "absolute_conf=$conf_path" "$root_path/sentinel/sentinel.conf" ; then
+	if  grep -q "absolute_conf=$conf_path" "$root_path/.absolutecore/sentinel/sentinel.conf" ; then
 		printWarning "absolute path already set in sentinel conf"
 	else
-		printf "absolute_conf=$conf_path" >> "$root_path/sentinel/sentinel.conf"
+		printf "absolute_conf=$conf_path" >> "$root_path/.absolutecore/sentinel/sentinel.conf"
 	fi
 
 	printSuccess "Done"
@@ -147,4 +147,4 @@ echo "Step 1 : Updating packages"
 
 printSuccess "\nInstallation done you can continue to follow last steps from the guide"
 printSuccess "\nPlease note this line for your crontab"
-printSuccess "\n* * * * * cd $root_path/sentinel && ./venv/bin/python bin/sentinel.py >/dev/null 2>&1"
+printSuccess "\n* * * * * cd $root_path/.absolutecore/sentinel && ./venv/bin/python bin/sentinel.py >/dev/null 2>&1"
