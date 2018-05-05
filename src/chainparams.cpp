@@ -148,9 +148,9 @@ public:
         assert(consensus.hashGenesisBlock == uint256S("0x00000de52875a68d7bf6a5bb5ad1b89fd7df4d67a9603669327949923dc74d7e"));
         assert(genesis.hashMerkleRoot == uint256S("0x12844a9cbf517654e272975506ab56af4d5c8dde0332a0ee48ba159c72daae03"));
         
-        vSeeds.push_back(CDNSSeedData("s1.absolute-coin.com", "s1.absolute-coin.com"));
-        vSeeds.push_back(CDNSSeedData("s2.absolute-coin.com", "s2.absolute-coin.com"));
-        vSeeds.push_back(CDNSSeedData("s3.absolute-coin.com", "s3.absolute-coin.com"));
+        vSeeds.push_back(CDNSSeedData("seed1.absolutecoin.net", "seed1.absolutecoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed2.absolutecoin.net", "seed2.absolutecoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed3.absolutecoin.net", "seed3.absolutecoin.net"));
 
         // Absolute addresses start with 'A'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,23);
@@ -267,9 +267,9 @@ public:
         
         vFixedSeeds.clear();
         vSeeds.clear();
-        vSeeds.push_back(CDNSSeedData("ts1.absolute-coin.com", "ts1.absolute-coin.com"));
-        vSeeds.push_back(CDNSSeedData("ts2.absolute-coin.com", "ts2.absolute-coin.com"));
-        vSeeds.push_back(CDNSSeedData("ts3.absolute-coin.com", "ts3.absolute-coin.com"));
+        vSeeds.push_back(CDNSSeedData("tseed1.absolutecoin.net", "tseed1.absolutecoin.net"));
+        vSeeds.push_back(CDNSSeedData("tseed2.absolutecoin.net", "tseed2.absolutecoin.net"));
+        vSeeds.push_back(CDNSSeedData("tseed3.absolutecoin.net", "tseed3.absolutecoin.net"));
 
         // Testnet Absolute addresses start with 'y'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,140);
