@@ -202,11 +202,11 @@ public:
         consensus.nMasternodePaymentsIncreaseBlock = 40320; // increase after 6 weeks first
         consensus.nMasternodePaymentsIncreasePeriod = 26880; // increase every 4 weeks afterwards
         consensus.nInstantSendKeepLock = 6;
-        consensus.nBudgetPaymentsStartBlock = 3000000000;
+        consensus.nBudgetPaymentsStartBlock =100;
         consensus.nBudgetPaymentsCycleBlocks = 28800;
         consensus.nBudgetPaymentsWindowBlocks = 100;
         consensus.nBudgetProposalEstablishingTime = 60*20;
-        consensus.nSuperblockStartBlock = 3000000000;
+        consensus.nSuperblockStartBlock = 100;
         consensus.nSuperblockCycle = 28800; // Superblocks can be issued hourly on testnet
         consensus.nGovernanceMinQuorum = 1;
         consensus.nGovernanceFilterElements = 500;
@@ -257,19 +257,25 @@ public:
         nMaxTipAge = 0x7fffffff; // allow mining on top of old blocks for testnet
         nDelayGetHeadersTime = 24 * 60 * 60 * 14;
         nPruneAfterHeight = 1000;
-
+/* old
         genesis = CreateGenesisBlock(1518597800, 519328, 0x1e0ffff0, 1, 30 * COIN);
-        			
-
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x0000e585b5b736b3a33ae8999fa2d63e036fb42e56ea5b6e5eacf3b473dd4e6"));
+		assert(consensus.hashGenesisBlock == uint256S("0x0000e585b5b736b3a33ae8999fa2d63e036fb42e56ea5b6e5eacf3b473dd4e6"));
         assert(genesis.hashMerkleRoot == uint256S("0x12844a9cbf517654e272975506ab56af4d5c8dde0332a0ee48ba159c72daae03"));
-        
+*/
+        genesis = CreateGenesisBlock(1518598800, 1399438, 0x1e0ffff0, 1, 30 * COIN);
+        consensus.hashGenesisBlock = genesis.GetHash();
+
+        assert(consensus.hashGenesisBlock == uint256S("0x00000de52875a68d7bf6a5bb5ad1b89fd7df4d67a9603669327949923dc74d7e"));
+        assert(genesis.hashMerkleRoot == uint256S("0x12844a9cbf517654e272975506ab56af4d5c8dde0332a0ee48ba159c72daae03"));
+
         vFixedSeeds.clear();
         vSeeds.clear();
-        vSeeds.push_back(CDNSSeedData("tseed1.absolutecoin.net", "tseed1.absolutecoin.net"));
+		
+		vSeeds.push_back(CDNSSeedData("tseed1.absolutecoin.net", "tseed1.absolutecoin.net"));
         vSeeds.push_back(CDNSSeedData("tseed2.absolutecoin.net", "tseed2.absolutecoin.net"));
         vSeeds.push_back(CDNSSeedData("tseed3.absolutecoin.net", "tseed3.absolutecoin.net"));
+		        
 
         // Testnet Absolute addresses start with 'y'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,140);
@@ -287,10 +293,10 @@ public:
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
 
-        fMiningRequiresPeers = true;
+        fMiningRequiresPeers = false;
         fDefaultConsistencyChecks = false;
         fRequireStandard = false;
-        fMineBlocksOnDemand = false;
+        fMineBlocksOnDemand = true;
         fTestnetToBeDeprecatedFieldRPC = true;
 
         nPoolMaxTransactions = 3;

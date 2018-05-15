@@ -47,9 +47,10 @@ padding:0;
 margin:0;
 }
 
-QToolBar > QToolButton {
+QToolBar > QToolButton { /* tab */ 
 background-color:#fff;
-border:0px solid #333;
+border:0px solid #7C7A7A;
+border-right:1px solid #333;
 min-height:2.5em;
 min-width: 8em;
 padding: 0em 1em;
@@ -58,7 +59,7 @@ color:#333;
 }
 
 QToolBar > QToolButton:checked {
-background-color:#06adaa;
+background-color:#7F92FF;
 color:#fff;
 font-weight:bold;
 }
@@ -84,7 +85,7 @@ background-color:transparent;
 }
 
 .QValidatedLineEdit, .QLineEdit { /* Text Entry Fields */
-border: 1px solid #06adaa;
+border: 1px solid #7F92FF;
 font-size:11px;
 min-height:25px;
 outline:0;
@@ -103,21 +104,22 @@ background-color:#f2f2f2;
 /*******************************************************/
 
 QPushButton { /* Global Button Style */
-background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #026663, stop: .1 #06adaa, stop: .95 #06adaa, stop: 1 #06adaa);
+background-color:#7F92FF;
 border:0;
+border-bottom:2px solid #7F92FF;
 border-radius:3px;
 color:#ffffff;
 font-size:12px;
 font-weight:normal;
 height: 26px;
-padding-left:25px;
+padding-left:20px;
 padding-right:25px;
 padding-top:5px;
 padding-bottom:5px;
 }
 
 QPushButton:hover {
-background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #026663, stop: .1 #026663, stop: .95 #026663, stop: 1 #06adaa);
+    border-bottom:2px solid #424D8A;
 }
 
 QPushButton:focus {
@@ -126,11 +128,11 @@ outline:none;
 }
 
 QPushButton:pressed {
-border:1px solid #333;
+    border-bottom:2px solid #424D8A;
 }
 
 QComboBox { /* Dropdown Menus */
-border:1px solid #06adaa;
+border:1px solid #7F92FF;
 padding: 3px 5px 3px 5px;
 background:#fcfcfc;
 min-height:25px;
@@ -142,8 +144,8 @@ background:#f2f2f2;
 }
 
 QComboBox:editable {
-background: #06adaa;
-color:#616161;
+background: #424D8A;
+color:#eee;
 border:0px solid transparent;
 }
 
@@ -186,7 +188,7 @@ selection-color:transparent;
 }
 
 QAbstractSpinBox {
-border:1px solid #06adaa;
+border:1px solid #7F92FF;
 padding: 3px 5px 3px 5px;
 background:#fcfcfc;
 min-height:25px;
@@ -199,8 +201,8 @@ subcontrol-position: top right;
 width:21px;
 background:#fcfcfc;
 border-left:0px;
-border-right:1px solid #06adaa;
-border-top:1px solid #06adaa;
+border-right:1px solid #7F92FF;
+border-top:1px solid #7F92FF;
 border-bottom:0px;
 padding-right:1px;
 padding-left:5px;
@@ -218,8 +220,8 @@ width:21px;
 background:#fcfcfc;
 border-top:0px;
 border-left:0px;
-border-right:1px solid #06adaa;
-border-bottom:1px solid #06adaa;
+border-right:1px solid #7F92FF;
+border-bottom:1px solid #7F92FF;
 padding-right:1px;
 padding-left:5px;
 padding-bottom:2px;
@@ -278,7 +280,7 @@ background-color:transparent;
 
 QHeaderView::section { /* Table Header Sections */
 qproperty-alignment:center;
-background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.25, stop: 0 #026663, stop: 1 #06adaa);
+background-color:#424D8A;
 color:#fff;
 min-height:25px;
 font-weight:bold;
@@ -503,7 +505,7 @@ padding-right:10px;
 }
 
 QDialog#SignVerifyMessageDialog QPlainTextEdit { /* Message Signing Text */
-border:1px solid #06adaa;
+border:1px solid #7F92FF;
 background-color:#fff;
 }
 
@@ -809,7 +811,7 @@ margin-left:16px;
 QWidget .QFrame#frame .QLabel#labelBalanceText { /* Available Balance Label */
 qproperty-alignment: 'AlignVCenter | AlignRight';
 min-width:160px;
-background-color:#06adaa;
+background-color:#424D8A;
 color:#ffffff;
 margin-right:5px;
 padding-right:5px;
@@ -821,7 +823,7 @@ min-height:35px;
 QWidget .QFrame#frame .QLabel#labelBalance { /* Available Balance */
 qproperty-alignment: 'AlignVCenter | AlignLeft';
 font-size:16px;
-color:#06adaa;
+color:#7F92FF;
 margin-left:0px;
     font-weight: bold;
 }
@@ -913,7 +915,7 @@ QWidget .QFrame#framePrivateSend .QLabel#labelPrivateSendHeader { /* PrivateSend
 qproperty-alignment: 'AlignVCenter | AlignCenter';
 max-width: 421px;
 min-width: 421px;
-background-color:#06adaa;
+background-color:#424D8A;
 color:#fff;
 margin-right: 5px;
 padding-right: 5px;
@@ -1116,7 +1118,7 @@ background-repeat:none;
 
 QWidget .QFrame#frame_2 .QLabel#label_4 { /* Recent Transactions Label */
 min-width:180px;
-color:#06adaa;
+color:#7F92FF;
 margin-left:67px;
 margin-top:83px;
 margin-right:5px;
@@ -1140,7 +1142,7 @@ font-weight:normal;
 font-size:12px;
 max-width:369px;
 margin-top:12px;
-margin-left:0px; /* CSS Voodoo - set to -66px to hide default transaction icons */
+margin-left:-70px; /* CSS Voodoo - set to -66px to hide default transaction icons */
 padding-right: 24px;
 }
 
