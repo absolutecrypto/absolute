@@ -78,20 +78,27 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = "main";
-        consensus.nSubsidyHalvingInterval = 350400; // limit subsidy on the yearly basis
+        consensus.nSubsidyHalvingInterval = 350400; // Note: actual number of blocks per calendar year
+		/* masternodes */
         consensus.nMasternodePaymentsStartBlock = 500;
         consensus.nMasternodePaymentsIncreaseBlock = 6720; // start increasing after first week
         consensus.nMasternodePaymentsIncreasePeriod = 6720; // weekly increase
-        consensus.nInstantSendKeepLock = 24;
-        consensus.nBudgetPaymentsStartBlock = 350000; 
-        consensus.nBudgetPaymentsCycleBlocks = 28800; // ~(60*24*30)/1.5
-        consensus.nBudgetPaymentsWindowBlocks = 100;
-        consensus.nBudgetProposalEstablishingTime = 60*60*24;
-        consensus.nSuperblockStartBlock = 99999999; // currently not used
-        consensus.nSuperblockCycle = 28800; // ~(60*24*30)/1.5
-        consensus.nGovernanceMinQuorum = 10;
-        consensus.nGovernanceFilterElements = 20000;
         consensus.nMasternodeMinimumConfirmations = 15;
+		
+		consensus.nInstantSendKeepLock = 24;
+        
+		/* budget */		
+		consensus.nBudgetPaymentsStartBlock = 81000; 
+        consensus.nBudgetPaymentsCycleBlocks = 6800; // ~(60*24*30)/1.5 / 4
+        consensus.nBudgetPaymentsWindowBlocks = 100;
+        consensus.nBudgetProposalEstablishingTime = 60*60*24; // in seconds 
+		
+        consensus.nSuperblockStartBlock = 98800; 
+        consensus.nSuperblockCycle = 6800; // ~(60*24*30)/1.5 / 4
+        
+		/* Governance */ 
+		consensus.nGovernanceMinQuorum = 10;
+        consensus.nGovernanceFilterElements = 20000;        
         consensus.nMajorityEnforceBlockUpgrade = 750;
         consensus.nMajorityRejectBlockOutdated = 950;
         consensus.nMajorityWindow = 1000;
@@ -148,9 +155,9 @@ public:
         assert(consensus.hashGenesisBlock == uint256S("0x00000de52875a68d7bf6a5bb5ad1b89fd7df4d67a9603669327949923dc74d7e"));
         assert(genesis.hashMerkleRoot == uint256S("0x12844a9cbf517654e272975506ab56af4d5c8dde0332a0ee48ba159c72daae03"));
         
-        vSeeds.push_back(CDNSSeedData("seed1.absolutecoin.net", "seed1.absolutecoin.net"));
-        vSeeds.push_back(CDNSSeedData("seed2.absolutecoin.net", "seed2.absolutecoin.net"));
-        vSeeds.push_back(CDNSSeedData("seed3.absolutecoin.net", "seed3.absolutecoin.net"));
+        vSeeds.push_back(CDNSSeedData("absolutecoin.net", "seed1.absolutecoin.net"));
+        vSeeds.push_back(CDNSSeedData("absolutecoin.net", "seed2.absolutecoin.net"));
+        vSeeds.push_back(CDNSSeedData("absolutecoin.net", "seed3.absolutecoin.net"));
 
         // Absolute addresses start with 'A'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,23);
@@ -202,12 +209,12 @@ public:
         consensus.nMasternodePaymentsIncreaseBlock = 40320; // increase after 6 weeks first
         consensus.nMasternodePaymentsIncreasePeriod = 26880; // increase every 4 weeks afterwards
         consensus.nInstantSendKeepLock = 6;
-        consensus.nBudgetPaymentsStartBlock =100;
-        consensus.nBudgetPaymentsCycleBlocks = 28800;
+        consensus.nBudgetPaymentsStartBlock =450;
+        consensus.nBudgetPaymentsCycleBlocks = 150;
         consensus.nBudgetPaymentsWindowBlocks = 100;
         consensus.nBudgetProposalEstablishingTime = 60*20;
-        consensus.nSuperblockStartBlock = 100;
-        consensus.nSuperblockCycle = 28800; // Superblocks can be issued hourly on testnet
+        consensus.nSuperblockStartBlock = 450;
+        consensus.nSuperblockCycle = 150; // Superblocks can be issued hourly on testnet
         consensus.nGovernanceMinQuorum = 1;
         consensus.nGovernanceFilterElements = 500;
         consensus.nMasternodeMinimumConfirmations = 1;
@@ -259,8 +266,7 @@ public:
         nPruneAfterHeight = 1000;
 /* old
         genesis = CreateGenesisBlock(1518597800, 519328, 0x1e0ffff0, 1, 30 * COIN);
-        consensus.hashGenesisBlock = genesis.GetHash();
-		assert(consensus.hashGenesisBlock == uint256S("0x0000e585b5b736b3a33ae8999fa2d63e036fb42e56ea5b6e5eacf3b473dd4e6"));
+        assert(consensus.hashGenesisBlock == uint256S("0x0000e585b5b736b3a33ae8999fa2d63e036fb42e56ea5b6e5eacf3b473dd4e6"));
         assert(genesis.hashMerkleRoot == uint256S("0x12844a9cbf517654e272975506ab56af4d5c8dde0332a0ee48ba159c72daae03"));
 */
         genesis = CreateGenesisBlock(1518598800, 1399438, 0x1e0ffff0, 1, 30 * COIN);
@@ -272,9 +278,9 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
 		
-		vSeeds.push_back(CDNSSeedData("tseed1.absolutecoin.net", "tseed1.absolutecoin.net"));
-        vSeeds.push_back(CDNSSeedData("tseed2.absolutecoin.net", "tseed2.absolutecoin.net"));
-        vSeeds.push_back(CDNSSeedData("tseed3.absolutecoin.net", "tseed3.absolutecoin.net"));
+		vSeeds.push_back(CDNSSeedData("absolutecoin.net", "tseed1.absolutecoin.net"));
+        vSeeds.push_back(CDNSSeedData("absolutecoin.net", "tseed2.absolutecoin.net"));
+        vSeeds.push_back(CDNSSeedData("absolutecoin.net", "tseed3.absolutecoin.net"));
 		        
 
         // Testnet Absolute addresses start with 'y'

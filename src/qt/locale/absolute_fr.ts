@@ -1623,7 +1623,7 @@ https://www.transifex.com/projects/p/absolutecoin/</translation>
     </message>
     <message>
         <source>Balances</source>
-        <translation>soldes</translation>
+        <translation>Soldes</translation>
     </message>
     <message>
         <source>Unconfirmed transactions to watch-only addresses</source>
@@ -1735,7 +1735,7 @@ https://www.transifex.com/projects/p/absolutecoin/</translation>
     </message>
     <message>
         <source>out of sync</source>
-        <translation>désynchronisé</translation>
+        <translation>Désynchronisé</translation>
     </message>
     <message>
         <source>Automatic backups are disabled, no mixing available!</source>
