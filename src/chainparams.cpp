@@ -88,13 +88,13 @@ public:
 		consensus.nInstantSendKeepLock = 24;
         
 		/* budget */		
-		consensus.nBudgetPaymentsStartBlock = 81000; 
-        consensus.nBudgetPaymentsCycleBlocks = 6800; // ~(60*24*30)/1.5 / 4
+		consensus.nBudgetPaymentsStartBlock = 98800; 
+        consensus.nBudgetPaymentsCycleBlocks = 7300; // ~(60*24*30)/1.5 / 4
         consensus.nBudgetPaymentsWindowBlocks = 100;
         consensus.nBudgetProposalEstablishingTime = 60*60*24; // in seconds 
 		
         consensus.nSuperblockStartBlock = 98800; 
-        consensus.nSuperblockCycle = 6800; // ~(60*24*30)/1.5 / 4
+        consensus.nSuperblockCycle = 7300; // ~(60*24*30)/1.5 / 4
         
 		/* Governance */ 
 		consensus.nGovernanceMinQuorum = 10;

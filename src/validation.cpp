@@ -527,7 +527,8 @@ bool CheckTransaction(const CTransaction& tx, CValidationState &state)
             return state.DoS(100, false, REJECT_INVALID, "bad-txns-inputs-duplicate");
         vInOutPoints.insert(txin.prevout);
     }
-
+	
+/** END DISABLE PREMINE **/
 /*    BOOST_FOREACH(const CTxIn& txin, tx.vin)
     {
         if (vInOutPoints.count(txin.prevout))
@@ -1279,8 +1280,16 @@ CAmount GetBlockSubsidy(int nPrevBits, int nPrevHeight, const Consensus::Params&
     for (int i = consensusParams.nSubsidyHalvingInterval; i <= nPrevHeight; i += consensusParams.nSubsidyHalvingInterval) {
         nSubsidy -= nSubsidy/5;
     }
+	
+	// Hard fork to increase the block reward by 10 extra percent (allowing budget/superblocks)	
+    CAmount nSuperblockPart = 0;
+	if( nPrevHeight > consensusParams.nBudgetPaymentsStartBlock) {
+		nSuperblockPart = nSubsidy / 10;
+		nSubsidy += nSuperblockPart;
+	}
+		
 
-    return fSuperblockPartOnly ? 0 : nSubsidy;
+    return fSuperblockPartOnly ? nSuperblockPart : nSubsidy - nSuperblockPart;
 }
 
 CAmount GetMasternodePayment(int nHeight, CAmount blockValue)
