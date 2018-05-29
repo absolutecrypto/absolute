@@ -9,7 +9,7 @@ packages:
 - "autoconf"
 reference_datetime: "2017-01-01 00:00:00"
 remotes:
-- "url": "https://github.com/absolutecrypto/absolute-detached-sigs"
+- "url": "https://github.com/absolute-community/absolute-detached-sigs"
   "dir": "signature"
 files:
 - "osslsigncode-1.7.1.tar.gz"

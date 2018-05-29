@@ -23,7 +23,7 @@ use the autogen script to prepare the build environment.
     make
 
 Precompiled binaries are available at github, see
-https://github.com/absolutecrypto/absolutecoin/releases
+https://github.com/absolute-community/absolutecoin/releases
 
 Always verify the signatures and checksums.
 

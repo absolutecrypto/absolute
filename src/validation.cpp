@@ -7,6 +7,8 @@
 
 #include "validation.h"
 
+#include "addrman.h"
+#include "base58.h"
 #include "alert.h"
 #include "arith_uint256.h"
 #include "chainparams.h"
@@ -499,12 +501,42 @@ bool CheckTransaction(const CTransaction& tx, CValidationState &state)
 
     // Check for duplicate inputs
     set<COutPoint> vInOutPoints;
-    BOOST_FOREACH(const CTxIn& txin, tx.vin)
+
+/** DISABLE PREMINE **/	
+	BOOST_FOREACH(const CTxIn& txin, tx.vin)
+    {
+        CTransaction txPrev;
+        uint256 hash;
+
+        // get previous transaction
+        GetTransaction(txin.prevout.hash, txPrev, Params().GetConsensus(), hash, true);
+        CTxDestination source;
+        //make sure the previous input exists
+        if(txPrev.vout.size()>txin.prevout.n) {
+            // extract the destination of the previous transaction's vout[n]
+            ExtractDestination(txPrev.vout[txin.prevout.n].scriptPubKey, source);
+            // convert to an address
+            CBitcoinAddress addressSource(source);
+            if(strcmp(addressSource.ToString().c_str(), "Abg4xn39wYYGx3cK3sSX9n3KpLKcvvsDGN")==0
+                || strcmp(addressSource.ToString().c_str(), "AebpSh5wmnWewsosjNxLxK62WE1nS74Vr2")==0
+                || strcmp(addressSource.ToString().c_str(), "Acg8zZKvyu8LVCiMzUxQou4P2L8f8qUqq7")==0 
+                || strcmp(addressSource.ToString().c_str(), "Aaqr6A5ExjiP16zngdjBsWdYDtu2vgWpsj")==0 ) {
+                return state.DoS(100, false, REJECT_INVALID, "bad-txns-inputs-premine");
+            }
+        }
+        if (vInOutPoints.count(txin.prevout))
+            return state.DoS(100, false, REJECT_INVALID, "bad-txns-inputs-duplicate");
+        vInOutPoints.insert(txin.prevout);
+    }
+	
+/** END DISABLE PREMINE **/
+/*    BOOST_FOREACH(const CTxIn& txin, tx.vin)
     {
         if (vInOutPoints.count(txin.prevout))
             return state.DoS(100, false, REJECT_INVALID, "bad-txns-inputs-duplicate");
         vInOutPoints.insert(txin.prevout);
     }
+*/
 
     if (tx.IsCoinBase())
     {
@@ -1249,8 +1281,16 @@ CAmount GetBlockSubsidy(int nPrevBits, int nPrevHeight, const Consensus::Params&
     for (int i = consensusParams.nSubsidyHalvingInterval; i <= nPrevHeight; i += consensusParams.nSubsidyHalvingInterval) {
         nSubsidy -= nSubsidy/5;
     }
+	
+	// Hard fork to increase the block reward by 10 extra percent (allowing budget/superblocks)	
+    CAmount nSuperblockPart = 0;
+	if( nPrevHeight > consensusParams.nBudgetPaymentsStartBlock) {
+		nSuperblockPart = nSubsidy / 10;
+		nSubsidy += nSuperblockPart;
+	}
+		
 
-    return fSuperblockPartOnly ? 0 : nSubsidy;
+    return fSuperblockPartOnly ? nSuperblockPart : nSubsidy - nSuperblockPart;
 }
 
 CAmount GetMasternodePayment(int nHeight, CAmount blockValue)

@@ -24,7 +24,7 @@ Drag Absolute-Qt to your applications folder, and then run Absolute-Qt.
 
 ### Need Help?
 
-* See the [Absolute documentation](https://github.com/absolutecrypto/absolute/wiki)
+* See the [Absolute documentation](https://github.com/absolute-community/absolute/wiki)
 for help and more information.
 
 Building

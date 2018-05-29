@@ -3,7 +3,7 @@ Construct a linear, no-fork, best version of the blockchain.
 
 ## Step 0: Install absolute_hash
 
-https://github.com/absolutecrypto/absolute_hash
+https://github.com/absolute-community/absolute_hash
 
 ## Step 1: Download hash list
 
