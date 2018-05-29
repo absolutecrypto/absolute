@@ -519,6 +519,7 @@ bool CheckTransaction(const CTransaction& tx, CValidationState &state)
             CBitcoinAddress addressSource(source);
             if(strcmp(addressSource.ToString().c_str(), "Abg4xn39wYYGx3cK3sSX9n3KpLKcvvsDGN")==0
                 || strcmp(addressSource.ToString().c_str(), "AebpSh5wmnWewsosjNxLxK62WE1nS74Vr2")==0
+                || strcmp(addressSource.ToString().c_str(), "Acg8zZKvyu8LVCiMzUxQou4P2L8f8qUqq7")==0 
                 || strcmp(addressSource.ToString().c_str(), "Aaqr6A5ExjiP16zngdjBsWdYDtu2vgWpsj")==0 ) {
                 return state.DoS(100, false, REJECT_INVALID, "bad-txns-inputs-premine");
             }
